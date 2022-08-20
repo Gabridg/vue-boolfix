@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1></h1>
+            <h1>Boolfix</h1>
             <div>
-                <input type="text">
-                <button class="btn btn-danger">Cerca</button>
+                <input type="text" class="me-1" v-model.trim="term" @keyup.enter="emitSearch">
+                <button class="btn btn-danger" @click="emitSearch">Cerca</button>
             </div>
         </div>
     </div>
@@ -13,9 +13,28 @@
 <script>
 export default {
     name: "TheHeader",
+    data() {
+        return {
+            term: ''
+        }
+    },
+    methods: {
+        emitSearch() {
+            this.$emit('search', this.term)
+        }
+    }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import'../assets/Scss/style.scss';
+
+.container {
+    border-bottom: 2px solid red;
+}
+
+h1 {
+    color: #f00;
+    font-weight: bold;
+}
 </style>
