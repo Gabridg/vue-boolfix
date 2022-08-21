@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <Header @search="startSearch" @key.up="enter" />
-    <section class="movies container">
-      <h2 class="fw-bold">Movies</h2>
+  <div id="app" class="container">
+    <Header @search="startSearch" @key.up="enter"></Header>
+    <h2 class="fw-bold">Movies</h2>
+    <section class="d-flex flex-wrap" id="movies">
       <ProductionCard v-for="movie in movies" :key="movie.id" :production="movie" />
     </section>
 
-    <section class="series container">
-      <h2 class="fw-bold">Series</h2>
+    <h2 class="fw-bold">Series</h2>
+    <section class="d-flex flex-wrap" id="series">
       <ProductionCard v-for="serie in series" :key="serie.id" :production="serie" />
     </section>
   </div>
@@ -16,7 +16,7 @@
 <script>
 import axios from "axios";
 import Header from './components/TheHeader.vue';
-import ProductionCard from "./components/ProductionCard.vue";
+import ProductionCard from './components/ProductionCard.vue';
 
 export default {
   name: 'App',
@@ -73,12 +73,6 @@ body {
 
   h2 {
     color: #fff;
-  }
-
-  ul {
-    list-style: none;
-    color: #fff;
-    font-weight: 800;
   }
 }
 </style>
