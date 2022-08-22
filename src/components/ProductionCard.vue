@@ -1,13 +1,13 @@
 <template>
     <ul>
-        <li class="text-center"> <img :src="posterSrc" alt="copertina film"></li>
-        <li>Titolo: {{ production.title || production.name }}</li>
-        <li>Titolo Originale: {{ production.original_title || production.original_name }}</li>
-        <li class="text-center">
+        <li> <img class="poster" :src="posterSrc" alt="copertina film"></li>
+        <li class="prod-info">Titolo: {{ production.title || production.name }}</li>
+        <li class="prod-info">Titolo Originale: {{ production.original_title || production.original_name }}</li>
+        <li class="text-center prod-info">
             <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
             <span v-else>{{ production.original_language }}</span>
         </li>
-        <li class="text-center">Voto: {{ production.vote_average }}</li>
+        <li class="text-center prod-info">Voto: {{ production.vote_average }}</li>
     </ul>
 </template>
 
@@ -36,7 +36,7 @@ export default {
 @import'../assets/Scss/style.scss';
 
 img {
-    width: 50%;
+    width: 70%;
 }
 
 ul {
@@ -49,5 +49,22 @@ ul {
     line-height: 30px;
     padding: 5px;
     margin: 10px;
+}
+
+.poster {
+    display: block;
+    margin: 0 auto;
+}
+
+.prod-info {
+    display: none;
+}
+
+ul:hover .prod-info {
+    display: block;
+}
+
+ul:hover .poster {
+    display: none;
 }
 </style>
