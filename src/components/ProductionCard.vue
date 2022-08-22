@@ -7,7 +7,12 @@
             <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
             <span v-else>{{ production.original_language }}</span>
         </li>
-        <li class="text-center prod-info">Voto: {{ production.vote_average }}</li>
+        <li class="text-center prod-info">
+            <template v-if="voteStar > 0">
+                <i v-for="vote in voteStar" :key="vote" class="fa-solid fa-star"></i>
+            </template>
+            <span v-else>Nessun Voto</span>
+        </li>
     </ul>
 </template>
 
@@ -27,13 +32,16 @@ export default {
         },
         posterSrc() {
             return (`https://image.tmdb.org/t/p/w500/${this.production.poster_path}`)
+        },
+        voteStar() {
+            return Math.ceil(this.production.vote_average / 2)
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import'../assets/Scss/style.scss';
+@import'../assets/scss/style.scss';
 
 img {
     width: 70%;
@@ -66,5 +74,9 @@ ul:hover .prod-info {
 
 ul:hover .poster {
     display: none;
+}
+
+.fa-star {
+    color: gold;
 }
 </style>
